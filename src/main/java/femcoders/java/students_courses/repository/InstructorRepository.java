@@ -1,4 +1,7 @@
 package femcoders.java.students_courses.repository;
 
-public interface InstructorRepository {
+import femcoders.java.students_courses.model.Instructor;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface InstructorRepository extends JpaRepository<Instructor, Long> {
 }

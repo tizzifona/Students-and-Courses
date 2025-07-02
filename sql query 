@@ -1,0 +1,20 @@
+-- 1. Get all tables together
+
+SELECT 
+    s.id as student_id,
+    s.name as student_name,
+    c.id as course_id,
+    c.title as course_title,
+    i.id as instructor_id,
+    i.name as instructor_name
+FROM student s
+JOIN student_course sc ON s.id = sc.student_id
+JOIN course c ON sc.course_id = c.id
+JOIN instructor i ON c.instructor_id = i.id
+ORDER BY s.name, c.title;
+
+-- 2. Get all tables divided
+SELECT * FROM COURSE; 
+SELECT * FROM INSTRUCTOR; 
+SELECT * FROM STUDENT;
+SELECT * FROM STUDENT_COURSE;
