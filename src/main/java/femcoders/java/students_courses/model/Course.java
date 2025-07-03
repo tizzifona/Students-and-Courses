@@ -1,9 +1,6 @@
 package femcoders.java.students_courses.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
-import java.util.Set;
 
 @Entity
 public class Course {
@@ -14,19 +11,14 @@ public class Course {
 
     private String title;
 
-    // Course has many students
-    @ManyToMany(mappedBy = "courses")
-    @JsonIgnore
-    private Set<Student> students;
-
     // Many courses can belong to one instructor
     @ManyToOne
+    @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
-    public Course(Long id, String title, Set<Student> students, Instructor instructor) {
+    public Course(Long id, String title, Instructor instructor) {
         this.id = id;
         this.title = title;
-        this.students = students;
         this.instructor = instructor;
     }
 
@@ -47,14 +39,6 @@ public class Course {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Set<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(Set<Student> students) {
-        this.students = students;
     }
 
     public Instructor getInstructor() {
